@@ -26,6 +26,12 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
+        /* Trava de rolagem lateral para evitar vazamento da tela */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
         body {
             background-color: var(--fundo-offwhite);
             color: var(--texto-dark);
@@ -46,7 +52,7 @@
         /* Sidebar Navegação Fixa e Comprida */
         .sidebar {
             width: 260px;
-            height: calc(100vh - 2rem); /* Ocupa toda a altura visível */
+            height: calc(100vh - 2rem);
             background: var(--card-white);
             border-radius: 24px;
             padding: 1.5rem 1rem;
@@ -101,7 +107,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            flex: 1; /* Ocupa o espaço intermediário para esticar a barra */
+            flex: 1;
         }
 
         .nav-link {
@@ -128,7 +134,7 @@
             color: var(--azul-escuro);
         }
 
-        /* Rodapé do Partido - 100% Imóvel */
+        /* Rodapé do Partido */
         .sidebar-footer {
             margin-top: auto;
             background: var(--azul-escuro);
@@ -274,7 +280,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Estilos Abas Internas (Propostas) */
+        /* Estilos Abas Internas (Propostas) Corrigidos */
         .tab-pills-container {
             background: var(--fundo-offwhite);
             padding: 6px;
@@ -283,6 +289,8 @@
             gap: 6px;
             margin-bottom: 1.25rem;
             overflow-x: auto;
+            max-width: 100%;
+            -webkit-overflow-scrolling: touch;
         }
 
         .tab-pill {
@@ -313,10 +321,12 @@
             display: block;
         }
 
+        /* Grid de Propostas Adaptável para Mobile */
         .proposals-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1rem;
+            width: 100%;
         }
 
         .proposal-card {
@@ -324,6 +334,8 @@
             border-radius: 16px;
             padding: 1.2rem;
             border-left: 4px solid var(--verde-lima);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .proposal-card h4 {
@@ -440,8 +452,9 @@
 
         .pillars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
+            width: 100%;
         }
 
         .pillar-card {
@@ -452,6 +465,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            box-sizing: border-box;
         }
 
         .pillar-card i {
@@ -490,6 +504,7 @@
             background: var(--fundo-offwhite);
             color: var(--texto-dark);
             transition: all 0.2s ease;
+            box-sizing: border-box;
         }
 
         .form-group input:focus, .form-group textarea:focus {
@@ -563,14 +578,13 @@
         /* PADRÃO TABLET E MOBILE */
         @media (max-width: 900px) {
             body {
-                padding-top: 4.5rem; /* Espaço para o menu fixo no topo em mobile */
+                padding-top: 4.5rem;
             }
 
             .app-container { 
                 flex-direction: column; 
             }
 
-            /* Menu Fixo na parte superior para Celulares / Tablets */
             .sidebar { 
                 width: 100%; 
                 height: auto;
@@ -586,13 +600,14 @@
             }
 
             .brand-header-custom, .sidebar-footer {
-                display: none; /* Esconde headers/footers secundários no mobile para salvar tela */
+                display: none;
             }
 
             .sidebar-nav {
                 flex-direction: row;
                 overflow-x: auto;
                 gap: 0.5rem;
+                -webkit-overflow-scrolling: touch;
             }
 
             .nav-link {
@@ -614,6 +629,14 @@
             .large-profile-header { 
                 flex-direction: column; 
                 text-align: center; 
+            }
+
+            .proposals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
             }
 
             .social-buttons { 
